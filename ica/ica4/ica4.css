@@ -32,10 +32,10 @@ h1 {
   font-size: 2em; font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 }
 h2 {
-  font-size: 1.5em; font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-size: 1.5px; font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 h3 {
-  font-size: 1.2em;
+  font-size: 1.2px;
 }
 p {
   font-size: 1em;
