@@ -7,20 +7,26 @@
     <link rel="stylesheet" href="wa5.css">
 </head>
 <body>
-    <nav class="main-nav">
-  <div class="nav-brand">Community Hub</div>
-  <button class="nav-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
-    <span></span>
-    <span></span>
-    <span></span>
-  </button>
-  <ul class="nav-menu">
-    <li><a href="#fridge_map">Fridge Map</a></li>
-    <li><a href="#donate">Donate</a></li>
-    <li><a href="#volunteer">Volunteer</a></li>
-    <li><a href="#contact">Contact</a></li>
-  </ul>
-  </nav>
+  <header>
+     <nav class="main-nav" aria-label="Main navigation">
+      <div class="nav-brand">
+        <h1>Denver Community Fridges</h1>
+      </div>
+
+      <button class="nav-toggle" aria-controls="main-menu" aria-expanded="false" aria-label="Toggle navigation menu">
+        <span></span><span></span><span></span>
+      </button>
+
+      <ul id="main-menu" class="nav-menu">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#fridge-map">Find a Fridge</a></li>
+        <li><a href="#donate">Donate</a></li>
+        <li><a href="#volunteer">Volunteer</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
    <section id="fridge-map">
     <h2>Find a Fridge</h2>
     <p>Map and locations will go here.</p>
