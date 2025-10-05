@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Denver Community Fridges</title>
+    <link rel="stylesheet" href="ica7.css">
+</head>
+<body>
+    <button id="theme" type="button">Click me!</button>
+  <header>
+     <nav class="main-nav" aria-label="Main navigation">
+      <div class="nav-brand">
+        <h1>Denver Community Fridges</h1>
+      </div>
+
+      <button class="nav-toggle" aria-controls="main-menu" aria-expanded="false" aria-label="Toggle navigation menu">
+        <span></span><span></span><span></span>
+      </button>
+
+      <ul id="main-menu" class="nav-menu">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#fridge-map">Find a Fridge</a></li>
+        <li><a href="#donate">Donate</a></li>
+        <li><a href="#volunteer">Volunteer</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+   <main>
+    <section id="home" class="home-grid" aria-label="Hero and quick actions">
+        <div class="hero" home="region" aria-labelledby="hero-title">
+            <h2 id="hero-title">Community Fridges for Everyone</h2>
+                <p>
+                    Find a fridge near you, see what they need, and/or
+                    volunteer to help keep shelves stocked.
+                </p>
+                <p class="actions-inline">
+                    <a class="btn" href="#fridge-map">Find a Fridge</a>
+                </p>
+        </div>
+
+        <div class="quick-stats" role="region" aria-labelledby="stats-title">
+            <h3 id="stats-title">Quick Info</h3>
+            <ul>
+                <li><strong>24</strong> fridge locations</li>
+                <li>Active volunteers weekly</li>
+                <li><strong>Needs:</strong> fresh produce, hygiene kits</li>
+            </ul>
+        </div>
+
+        <div class="highlight" role="region" aria-labelledby="highlight-title">
+            <h3 id="highlight-title">How to donate safely</h3>
+            <p>
+                Pack non-perishables that are sealed and labled. Fresh produce
+                welcome!
+            </p>
+        </div>
+    </section>
+
+    <section id="fridge-map" class="resources-grid" aria-label="Fridge map
+        and resources">
+        <aside class="filters" aria-labelledby="filter-title">
+            <h2 id="filter-title">Filter & Quick Actions</h2>
+
+            <form id="filter-form" class="filter-form" action="#" method="get">
+                <label for="search-input">Search fridges</label>
+                <input id="search-input" name="q" type="search" placeholder="
+                    neighborhood, name, needs"/>
+                <label for="need-select">Needs:</label>
+                <select id="need-select" name="need">
+                    <option value="">All</option>
+                    <option value="produce">Produce</option>
+                    <option value="nonperish">Non-perishables</option>
+                    <option value="hygiene">Hygiene</option>
+                </select>
+                <div class="pref">
+                    <input type="checkbox" id="remember-pref" />
+                    <label for="remember-pref">Remember my preferred fridge</label>
+                </div>
+
+                <button id="clear-filters" type="button" class="small">Clear</button>
+            </form>
+
+            <div class="preference" id="preference-area" aria-live="polite"></div>
+        </aside>
+
+        <div class="map" role="region" aria-labelledby="map-title">
+            <h2 id="map-title">Map (placeholder for now, make sure to add this for the real thing)</h2>
+            <div class="map-placeholder" aria-hidden="true">
+                Map will be here. DO NOT FORGET FOR REAL THING!</div>
+            </div>
+
+            <section class="list" aria-labelledby="list-title">
+                <h2 id="list-title">Fridge locations</h2>
+                <div id="results-announce" class="sr-only" aria-live="polite"></div>
+
+                <div class="cards" id="fridge-cards">
+                    <article class="fridge-card" data-name="Westwood area fridge"
+                        data-neighborhood="Westwood area" data-needs="produce,nonperish" tabindex="0">
+                        <h3>Westwood Area Fridge</h3>
+                        <p class="meta">Westwood Area - Fridges always stocked</p>
+                        <p class="needs"><strong>Needs:</strong>Produce, Non-perishables</p>
+                        <p><a href="donate">How to donate</a></p>
+                    </article>
+
+                    <article class="fridge-card" data-name="Highland area fridge"
+                        data-neighborhood="Highland area" data-needs="hygiene,nonperish" 
+                        tabindex="0">
+                        <h3>Highland Area Fridge</h3>
+                        <p class="meta">Highland Area - Fridges usually stocked</p>
+                        <p class="needs"><strong>Needs:</strong>Hygiene, Non-perishables</p>
+                        <p><a href="#donate">How to donate</a></p>
+                    </article>
+
+                    <article class="fridge-card" data-name="Whitter fridge"
+                    data-neighborhood="Whittier" data-needs="produce" tabindex="0">
+                        <h3>Whittier Fridge</h3>
+                        <p class="meta">Whittier - Low stock on fridges</p>
+                        <p class="needs"><strong>Needs:</strong> Produce</p>
+                        <p><a href="#donate">How to donate</a></p>
+                    </article>
+                </div>
+            </section>
+    </section>
+
+    <section id="donate" class="content-block">
+        <h2>Donate</h2>
+        <p>Drop-off times and what to bring will go here.</p>
+    </section>
+
+    <section id="volunteer" class="content-block">
+        <h2>Volunteer</h2>
+        <p>Sign up instructions would go here.</p>
+    </section>
+
+    <section id="contact" class="content-block">
+        <h2>Contact</h2>
+        <p>Contact the organizers via the contact form or social media here.</p>
+    </section>
+   </main>
+
+  <script src="ica7.js" defer></script>
+  
+    
+    <footer>
+        <p>Denver Community Fridges - WA6</p>
+    </footer>
+</body>
+</html>
