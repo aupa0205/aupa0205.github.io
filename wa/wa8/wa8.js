@@ -45,7 +45,7 @@ function setupSearchFilter () {
             const neighborhood = (card.dataset.neighborhood || ' ').toLowerCase();
             const matchesQuery = !q || name.includes(q) || neighborhood.includes(q)
             needSelect.includes(q);
-            const matchesNeed = !need || needSelect.includes(need);
+            const matchesNeed = !need || card.dataset.needs.includes(need);
 
             if (matchesQuery && matchesNeed) {
                 card.style.display = '';
