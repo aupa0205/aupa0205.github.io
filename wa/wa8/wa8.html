@@ -59,7 +59,7 @@
         <section class="preferences">
           <h2>Save Your Preference</h2>
             
-            <label for="userPreference">Select what’s most important to you when visiting this site:</label>
+            <label for="userPreference">Select what's most important to you when visiting this site:</label>
             <select id="userPreference">
                 <option value="fridges">Find a Fridge</option>
                 <option value="donate">Donate</option>
@@ -76,8 +76,7 @@
 
             <form id="filter-form" class="filter-form" action="#" method="get">
                 <label for="search-input">Search fridges</label>
-                <input id="search-input" name="q" type="search" placeholder="
-                    neighborhood, name, needs"/>
+                <input id="search-input" name="q" type="search" placeholder="Search"/>
                 <label for="need-select">Needs:</label>
                 <select id="need-select" name="need">
                     <option value="">All</option>
@@ -100,7 +99,7 @@
             <h2 id="map-title">Map</h2>
             <div class="map-placeholder" aria-hidden="true">
             <img src="../../img/DCF_map.png" alt="Map for Denver Community Fridges"
-                width="2500" height="3000"></div>
+             width="500" height="700"></div>
             </div>
 
             <section class="list" aria-labelledby="list-title">
@@ -128,8 +127,9 @@
                     <article class="fridge-card" data-name="Whitter fridge"
                     data-neighborhood="Whittier" data-needs="produce" tabindex="0">
                         <h3>Whittier Fridge</h3>
-                        <p class="meta">Whittier - Low stock on fridges</p>
-                        <p class="needs"><strong>Needs:</strong> Produce</p>
+                        <p class="meta">Whittier - Fridges low, SOS!</p>
+                        <p class="needs"><strong>Needs:</strong> Produce
+                        non-perishables, hygiene kits, canned goods</p>
                         <p><a href="#donate">How to donate</a></p>
                     </article>
                 </div>
@@ -138,12 +138,21 @@
 
     <section id="donate" class="content-block">
         <h2>Donate</h2>
-        <p>Drop-off times and what to bring will go here.</p>
+        <p>Fridges are open to the public 24/7! Please check our locations to see where
+            to donate.
+        </p>
     </section>
 
     <section id="volunteer" class="content-block">
         <h2>Volunteer</h2>
-        <p>Sign up instructions would go here.</p>
+        <p>Before you can start volunteering, you'll need to register and attend a volunteer onboarding 
+            session. To sign up for a session, you'll need to log into VicNet and navigate to the 
+            “Schedule” tab. Here you will see all of the shifts you are able to sign up for. 
+            Please note, before you attend an onboarding session, the only shifts you will be able to see are onboardings. 
+            When you first navigate to the schedule tab, you will likely only see shifts on “your schedule.” 
+            To change the view to see all possible shifts,  click on the box on the right side that says “Your Schedule” and change it to either day or month. 
+            Select which session you would like to attend and await further information that will be sent via an email to the address on file. 
+        </p>
     </section>
 
     <section id="contact" class="content-block">
