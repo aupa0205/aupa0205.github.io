@@ -1,0 +1,194 @@
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Movie Search</title>
+  <style>
+    body { 
+        font-family: Arial, sans-serif; 
+        margin: 2rem; 
+        background: black; 
+        color: white; 
+    }
+    h1 { 
+        text-align: center; 
+    }
+    input, button { 
+        padding: 0.5rem; 
+        margin: 0.5rem; 
+    }
+    #results img { 
+        width: 100px; 
+        height: auto; 
+        border-radius: 4px; 
+    }
+    .movie { 
+        display: flex; 
+        align-items: center; 
+        gap: 1rem; background: black; 
+        padding: 1rem; 
+        margin: 1rem 0; 
+        border-radius: 8px; 
+    }
+    .favorites { 
+        margin-top: 2rem; 
+    }
+    button { 
+        cursor: pointer; 
+        background: gray; 
+        color: black; 
+        border: none; 
+        border-radius: 4px; 
+    }
+    button:hover { 
+        background: whitesmoke; 
+        color: black; 
+    }
+  </style>
+</head>
+<body>
+  <h1> Movie Search </h1>
+
+  <div>
+    <input type="text" id="searchInput" placeholder="Search for a movie" />
+    <button id="searchBtn">Search</button>
+  </div>
+
+  <p id="status"></p>
+  <div id="results"></div>
+
+  <div class="favorites">
+    <h2> Favorites </h2>
+    <button onclick="exportFavorites()"> Export Favorites </button>
+    <button onclick="clearFavorites()"> Clear Favorites </button>
+    <ul id="favoritesList"></ul>
+  </div>
+
+  <script>
+    const API_KEY = "38c0a734";
+
+    const resultsDiv = document.getElementById("results");
+    const statusEl = document.getElementById("status");
+    const favoritesList = document.getElementById("favoritesList");
+    const searchBtn = document.getElementById("searchBtn");
+
+    let favorites = JSON.parse(localStorage.getItem("favorites")) || [];
+    renderFavorites();
+
+    searchBtn.addEventListener("click", searchMovies);
+    document.getElementById("searchInput").addEventListener("keydown", (e) => {
+      if (e.key === "Enter") searchMovies();
+    });
+
+    async function searchMovies() {
+      const query = document.getElementById("searchInput").value.trim();
+        if (!query) {
+            resultsDiv.innerHTML = "";
+            statusEl.textContent = "";
+            return;
+        }
+      resultsDiv.innerHTML = "";
+      statusEl.textContent = "Loading...";
+
+      try {
+        const url = `https://www.omdbapi.com/?apikey=${API_KEY}&s=${encodeURIComponent(query)}`;
+        console.log("Fetching:", url);
+
+        const res = await fetch(url);
+        console.log("Status:", res.status, res.statusText);
+
+        if (!res.ok) throw new Error("Network error: " + res.status);
+        const data = await res.json();
+        console.log("API response:", data);
+
+        if (data.Response === "False") throw new Error(data.Error || "No results");
+
+        statusEl.textContent = "";
+        data.Search.forEach(movie => {
+          const div = document.createElement("div");
+          div.className = "movie";
+
+          const img = document.createElement("img");
+          img.src = movie.Poster !== "N/A" ? movie.Poster : "https://via.placeholder.com/100";
+          img.alt = movie.Title;
+
+          const info = document.createElement("div");
+          const title = document.createElement("h3");
+          title.textContent = `${movie.Title} (${movie.Year})`;
+
+          const favBtn = document.createElement("button");
+          favBtn.textContent = "Add to Favorites";
+          favBtn.addEventListener("click", () => saveFavorite(movie));
+
+          info.appendChild(title);
+          info.appendChild(favBtn);
+
+          div.appendChild(img);
+          div.appendChild(info);
+          resultsDiv.appendChild(div);
+        });
+      } catch (err) {
+        console.error(err);
+        statusEl.textContent = err.message + " Please try again";
+      }
+    }
+
+    function saveFavorite(movie) {
+      if (!favorites.find(f => f.imdbID === movie.imdbID)) {
+        favorites.push(movie);
+        localStorage.setItem("favorites", JSON.stringify(favorites));
+        renderFavorites();
+      } else {
+        alert("Already in favorites");
+      }
+    }
+
+    function renderFavorites() {
+      favoritesList.innerHTML = favorites.map(f => `
+        <li>${escapeHtml(f.Title || f.trackName || "Unknown")} (${escapeHtml(f.Year || "")})
+          <button onclick="removeFavorite('${f.imdbID || ""}')">Remove</button>
+        </li>
+      `).join("");
+    }
+
+    function removeFavorite(id) {
+      favorites = favorites.filter(f => f.imdbID !== id);
+      localStorage.setItem("favorites", JSON.stringify(favorites));
+      renderFavorites();
+    }
+
+    function clearFavorites() {
+      if (confirm("Clear all saved favorites?")) {
+        localStorage.removeItem("favorites");
+        favorites = [];
+        renderFavorites();
+      }
+    }
+
+    function exportFavorites() {
+      const blob = new Blob([JSON.stringify(favorites, null, 2)], { type: "application/json" });
+      const a = document.createElement("a");
+      a.href = URL.createObjectURL(blob);
+      a.download = "favorites.json";
+      a.click();
+    }
+
+    function escapeHtml(str) {
+      if (str === undefined || str === null) return "";
+      return String(str)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#39;");
+    }
+
+    document.getElementById("searchInput").addEventListener("input", (e) => {
+        if (!e.target.value.trim()) {
+        resultsDiv.innerHTML = "";
+        statusEl.textContent = "";
+    }
+});
+  </script>
+</body>
+</html>
