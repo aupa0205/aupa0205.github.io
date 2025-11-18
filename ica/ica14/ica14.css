@@ -142,8 +142,8 @@ body {
   background: linear-gradient(
     -30deg,
     white,
-    transparent 30%,
-    transparent 70%,
+    transparent 100%,
+    transparent 50%,
     white
   );
 }
@@ -252,13 +252,13 @@ body {
 
 /* Typography */
 .title {
-  font-size: 36px;
+  font-size: 50px;
   font-weight: 500;
   margin-top: auto;
 }
 
 .description {
-  opacity: 0.5;
+  opacity: 1;
 }
 
 /* Divider */
